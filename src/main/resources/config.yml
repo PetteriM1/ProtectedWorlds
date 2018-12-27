@@ -1,0 +1,10 @@
+worlds:
+  - "example1"
+  - "example2"
+
+noBlockBreaking: true
+noBlockPlacing: true
+noBucketFilling: true
+noBucketEmptying: true
+noItemDropping: true
+noBlockIgniting: true
