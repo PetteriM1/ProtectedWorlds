@@ -9,3 +9,4 @@ noBucketEmptying: true
 noItemDropping: true
 noBlockIgniting: true
 noFarmlandJumping: true
+noPvp: true

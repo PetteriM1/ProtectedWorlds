@@ -3,3 +3,8 @@ version: "${pom.version}"
 api: ["1.0.0"]
 author: PetteriM1
 main: pw.ProtectedWorlds
+
+permissions:
+  protectedworlds.bypassall:
+    description: "Ignore ProtectedWorlds protection"
+    default: op
