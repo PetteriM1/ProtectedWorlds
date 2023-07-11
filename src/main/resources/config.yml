@@ -9,4 +9,5 @@ noBucketEmptying: true
 noItemDropping: true
 noBlockIgniting: true
 noFarmlandJumping: true
+noItemFrameDrops: true
 noPvp: true
