@@ -10,4 +10,5 @@ noItemDropping: true
 noBlockIgniting: true
 noFarmlandJumping: true
 noItemFrameDrops: true
+noSignColoring: true
 noPvp: true

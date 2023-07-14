@@ -2,12 +2,9 @@ package me.petterim1.protectedworlds;
 
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
-import cn.nukkit.event.block.BlockIgniteEvent;
+import cn.nukkit.event.block.*;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
-import cn.nukkit.event.block.BlockBreakEvent;
-import cn.nukkit.event.block.BlockPlaceEvent;
-import cn.nukkit.event.block.ItemFrameDropItemEvent;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.player.PlayerBucketEmptyEvent;
 import cn.nukkit.event.player.PlayerBucketFillEvent;
@@ -96,6 +93,20 @@ public class Main extends PluginBase implements Listener {
     @EventHandler
     public void action(ItemFrameDropItemEvent e) {
         if (enabledWorlds.contains(e.getPlayer().getLevel().getName()) && !e.getPlayer().hasPermission("protectedworlds.bypass." + e.getPlayer().getLevel().getName()) && !e.getPlayer().hasPermission("protectedworlds.bypassall") && config.getBoolean("noItemFrameDrops")) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void action(SignColorChangeEvent e) {
+        if (enabledWorlds.contains(e.getPlayer().getLevel().getName()) && !e.getPlayer().hasPermission("protectedworlds.bypass." + e.getPlayer().getLevel().getName()) && !e.getPlayer().hasPermission("protectedworlds.bypassall") && config.getBoolean("noSignColoring")) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void action(SignGlowEvent e) {
+        if (enabledWorlds.contains(e.getPlayer().getLevel().getName()) && !e.getPlayer().hasPermission("protectedworlds.bypass." + e.getPlayer().getLevel().getName()) && !e.getPlayer().hasPermission("protectedworlds.bypassall") && config.getBoolean("noSignColoring")) {
             e.setCancelled(true);
         }
     }
