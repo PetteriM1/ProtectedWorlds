@@ -10,21 +10,23 @@ import cn.nukkit.event.player.PlayerBucketEmptyEvent;
 import cn.nukkit.event.player.PlayerBucketFillEvent;
 import cn.nukkit.event.player.PlayerDropItemEvent;
 import cn.nukkit.event.player.PlayerInteractEvent;
+import cn.nukkit.item.Item;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main extends PluginBase implements Listener {
 
     private Config config;
-    private List<String> enabledWorlds;
+    private Set<String> enabledWorlds;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         config = getConfig();
-        enabledWorlds = config.getStringList("worlds");
+        enabledWorlds = new HashSet<>(config.getStringList("worlds"));
         getServer().getPluginManager().registerEvents(this, this);
     }
 
@@ -76,6 +78,8 @@ public class Main extends PluginBase implements Listener {
     public void action(PlayerInteractEvent e) {
         if (enabledWorlds.contains(e.getPlayer().getLevel().getName()) && !e.getPlayer().hasPermission("protectedworlds.bypass." + e.getPlayer().getLevel().getName()) && !e.getPlayer().hasPermission("protectedworlds.bypassall")) {
             if (e.getAction() == PlayerInteractEvent.Action.PHYSICAL && e.getBlock().getId() == Block.FARMLAND && config.getBoolean("noFarmlandJumping")) {
+                e.setCancelled(true);
+            } else if (e.getAction() == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK && e.getItem().getId() == Item.END_CRYSTAL && config.getBoolean("noCrystalPlacement")) {
                 e.setCancelled(true);
             }
         }
